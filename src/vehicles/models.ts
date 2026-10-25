@@ -127,7 +127,7 @@ const matCache = new Map<string, Material>()
 function shared<T extends Material>(key: string, make: () => T): T {
   let m = matCache.get(key) as T | undefined
   if (!m) { m = make(); matCache.set(key, m) }
-  return m
+  return m as T
 }
 export const glassMat = () => shared('glass', () => new MeshStandardMaterial({ color: '#2a3c50', metalness: 0.65, roughness: 0.05, envMapIntensity: 1.8 }))
 export const trimMat = () => shared('trim', () => new MeshStandardMaterial({ color: '#ffffff', vertexColors: true, metalness: 0.2, roughness: 0.65 }))
